@@ -1,0 +1,70 @@
+.login {
+  margin-top: 1rem;
+}
+.signupTitle {
+  height: 130px;
+  overflow: hidden;
+  align-items: flex-start;
+}
+.loginTitle {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding-right: 3rem;
+}
+.loginInputs,
+.loginSignUp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.loginSignUp {
+  margin-top: 1.2rem;
+}
+.loginLogo {
+  display: none;
+}
+.signupLocation {
+  display: flex;
+  gap: 1rem;
+}
+.signupImage {
+  height: 320px;
+  align-self: flex-start;
+}
+
+@media (min-width: 600px) {
+  .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+  }
+  .loginImage {
+    width: 12rem;
+  }
+  .loginLogo {
+    display: block;
+    width: 9rem;
+  }
+  .loginTitle {
+    height: 100vh;
+    background-color: #fdd534;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 10rem;
+  }
+  .signupImage {
+    height: unset;
+    align-self: unset;
+  }
+  .loginSignUp {
+    margin-top: 2.5rem;
+    gap: 0.5rem;
+  }
+  .loginInputs {
+    gap: 1rem;
+  }
+}
