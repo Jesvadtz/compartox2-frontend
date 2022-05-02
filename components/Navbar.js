@@ -1,4 +1,5 @@
 import * as React from "react";
+import Link from "next/link";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -117,8 +118,12 @@ export default function Navbar() {
             </Search>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "block" } }}>
-              <ButtonText variant="text">Iniciar sesión</ButtonText>
-              <ButtonText variant="text">Crear cuenta</ButtonText>
+              <Link href="/login">
+                <ButtonText variant="text">Iniciar sesión</ButtonText>
+              </Link>
+              <Link href="/signup">
+                <ButtonText variant="text">Crear cuenta</ButtonText>
+              </Link>
             </Box>
             <Box sx={{ display: { md: "flex" } }}>
               <IconButton
