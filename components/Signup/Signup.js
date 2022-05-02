@@ -1,10 +1,8 @@
-import * as React from "react";
-import { Grid } from "@mui/material";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+
+import { Alert, Grid } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 
 import ButtonPrimary from "../ButtonPrimary";
 import Layout from "../Layout";
@@ -13,12 +11,31 @@ import Note from "../Note";
 import Subtitle from "../Subtitle";
 
 import styles from "../../components/LoginForm/LoginForm.module.scss";
+import signup from "../../services/users/signup";
 
 export default function Signup() {
-  const [state, setState] = React.useState("");
+  const [values, setValues] = useState({});
+  const [error, setError] = useState(null);
 
-  const handleChange = (event) => {
-    setState(event.target.value);
+  const router = useRouter();
+
+  const handleForm = (event) => {
+    setValues({ ...values, [event.target.name]: event.target.value });
+    if (error) setError(null);
+  };
+  const handleSubmit = async () => {
+    try {
+      // event.preventDefault();
+      const response = await signup(values);
+      console.log("response: ", response);
+
+      if (response.success) {
+        localStorage.setItem("user", response.user);
+        router.push("/");
+      }
+    } catch (error) {
+      setError("Error. Verifique los datos ingresados");
+    }
   };
 
   return (
@@ -41,6 +58,9 @@ export default function Signup() {
           <TextField
             name="name"
             label="Nombre(s)"
+            type="text"
+            value={values["name" || ""]}
+            onChange={handleForm}
             variant="standard"
             required
             sx={{ alignSelf: "stretch", margin: "0 3rem" }}
@@ -48,14 +68,20 @@ export default function Signup() {
           <TextField
             name="lastname"
             label="Apellido"
+            type="text"
+            value={values["lastname" || ""]}
+            onChange={handleForm}
             variant="standard"
             required
             sx={{ alignSelf: "stretch", margin: "0 3rem" }}
           />
           <TextField
-            name="numberWhatsApp"
+            name="number"
             label="Teléfono (WhatsApp)"
             variant="standard"
+            type="number"
+            value={values["number" || ""]}
+            onChange={handleForm}
             required
             sx={{ alignSelf: "stretch", margin: "0 3rem" }}
           />
@@ -65,23 +91,23 @@ export default function Signup() {
             sm={12}
             sx={{ alignSelf: "stretch", margin: "0 3rem" }}
           >
-            <FormControl fullWidth variant="standard" sx={{ flex: "1" }}>
-              <InputLabel>Estado</InputLabel>
-              <Select
-                labelId="demo-simple-select-standard-label"
-                value={state}
-                label="Estado"
-                onChange={handleChange}
-              >
-                <MenuItem value={1}>Ciudad de México</MenuItem>
-                <MenuItem value={2}>Edo. de México</MenuItem>
-                <MenuItem value={3}>Puebla</MenuItem>
-              </Select>
-            </FormControl>
+            <TextField
+              name="state"
+              label="Estado"
+              variant="standard"
+              type="text"
+              value={values["state" || ""]}
+              onChange={handleForm}
+              required
+              sx={{ flex: "1" }}
+            />
             <TextField
               name="city"
               label="Ciudad"
               variant="standard"
+              type="text"
+              value={values["city" || ""]}
+              onChange={handleForm}
               required
               sx={{ flex: "1" }}
             />
@@ -90,21 +116,36 @@ export default function Signup() {
             name="email"
             label="Email"
             variant="standard"
+            type="email"
+            value={values["email" || ""]}
+            onChange={handleForm}
             required
             sx={{ alignSelf: "stretch", margin: "0 3rem" }}
           />
           <TextField
             name="password"
             label="Contraseña"
+            type="password"
+            value={values["password" || ""]}
+            onChange={handleForm}
             variant="standard"
             size="small"
             required
             sx={{ alignSelf: "stretch", margin: "0 3rem" }}
           />
-          <ButtonPrimary children="Crear cuenta" variant="contained" />
+          <ButtonPrimary
+            children="Crear cuenta"
+            variant="contained"
+            onClick={handleSubmit}
+          />
+          {error && (
+            <Alert variant="standard" color="error">
+              {error}
+            </Alert>
+          )}
           <Grid item xs={12} className={styles.loginSignUp}>
             <Subtitle subtitle="¿Ya tienes cuenta?" />
-            <Note note="Iniciar Sesión" href="/login" />
+            <Note note="Inicia Sesión" href="/login" />
           </Grid>
         </Grid>
       </Grid>
