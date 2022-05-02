@@ -1,0 +1,31 @@
+.landingSection {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 5rem;
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+.landingText {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.landingImage {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .landingSection {
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
+    margin-bottom: -40px;
+  }
+  .landingContainerImg {
+    display: flex;
+    justify-content: center;
+  }
+  .landingImage {
+    width: 60%;
+  }
+}
