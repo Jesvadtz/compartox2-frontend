@@ -1,0 +1,55 @@
+.article {
+  text-align: center;
+}
+.articleTitle {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-left: 3rem;
+}
+.articleForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.articleImages {
+  margin: 1rem 0 2rem 0;
+}
+.articleButton {
+  margin: 2rem 0 0.5rem 0;
+}
+@media (min-width: 900px) {
+  .article {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .articleTitle {
+    margin-top: 0;
+  }
+  .articleImages {
+    margin: 0;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10rem;
+  }
+  .articleButton {
+    margin: 0 0 0 3rem;
+  }
+  .articlePublish {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+  .articleLayout {
+    height: calc(100vh - 132px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: auto;
+  }
+}

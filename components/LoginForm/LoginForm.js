@@ -47,7 +47,7 @@ export default function Login() {
             label="Email"
             variant="standard"
             type="email"
-            value={values["email"] || ""}
+            value={values.email || ""}
             onChange={handleChange}
             required
             sx={{ alignSelf: "stretch", margin: "0 3rem" }}
@@ -57,7 +57,7 @@ export default function Login() {
             label="Contraseña"
             variant="standard"
             type="password"
-            value={values["password"] || ""}
+            value={values.password || ""}
             onChange={handleChange}
             size="small"
             required
