@@ -106,7 +106,9 @@ export default function Navbar() {
         <Container maxWidth="lg">
           <Toolbar disableGutters>
             <MenuMobile />
-            <img src="./compartox2.svg" />
+            <Link href="/">
+              <img src="./compartox2.svg" />
+            </Link>
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />

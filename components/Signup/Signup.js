@@ -59,7 +59,7 @@ export default function Signup() {
             name="name"
             label="Nombre(s)"
             type="text"
-            value={values["name" || ""]}
+            value={values.name || ""}
             onChange={handleForm}
             variant="standard"
             required
@@ -69,7 +69,7 @@ export default function Signup() {
             name="lastname"
             label="Apellido"
             type="text"
-            value={values["lastname" || ""]}
+            value={values.lastname || ""}
             onChange={handleForm}
             variant="standard"
             required
@@ -80,7 +80,7 @@ export default function Signup() {
             label="Teléfono (WhatsApp)"
             variant="standard"
             type="number"
-            value={values["number" || ""]}
+            value={values.number || ""}
             onChange={handleForm}
             required
             sx={{ alignSelf: "stretch", margin: "0 3rem" }}
@@ -96,7 +96,7 @@ export default function Signup() {
               label="Estado"
               variant="standard"
               type="text"
-              value={values["state" || ""]}
+              value={values.state || ""}
               onChange={handleForm}
               required
               sx={{ flex: "1" }}
@@ -106,7 +106,7 @@ export default function Signup() {
               label="Ciudad"
               variant="standard"
               type="text"
-              value={values["city" || ""]}
+              value={values.city || ""}
               onChange={handleForm}
               required
               sx={{ flex: "1" }}
@@ -117,7 +117,7 @@ export default function Signup() {
             label="Email"
             variant="standard"
             type="email"
-            value={values["email" || ""]}
+            value={values.email || ""}
             onChange={handleForm}
             required
             sx={{ alignSelf: "stretch", margin: "0 3rem" }}
@@ -126,7 +126,7 @@ export default function Signup() {
             name="password"
             label="Contraseña"
             type="password"
-            value={values["password" || ""]}
+            value={values.password || ""}
             onChange={handleForm}
             variant="standard"
             size="small"
