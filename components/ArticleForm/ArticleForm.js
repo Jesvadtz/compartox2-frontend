@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 import { Alert, Grid } from "@mui/material";
 import TextField from "@mui/material/TextField";
@@ -11,6 +12,8 @@ import ButtonPrimary from "../ButtonPrimary";
 import Note from "../Note";
 import Layout from "../Layout";
 import Title from "../Title";
+import ImageUploader from "../ImageUploader";
+import saveFiles from "../../services/files/saveFiles";
 
 import styles from "./ArticleForm.module.scss";
 
@@ -18,24 +21,39 @@ const formDefault = {
   name: "",
   type: "Material",
   description: "",
-  precio: 0,
+  price: 0,
   author: "",
   editorial: "",
-  images: "",
 };
 
 export default function ArticleForm() {
   const [values, setValues] = useState(formDefault);
+  const [files, setFiles] = useState([]);
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
   const handleType = (event) => {
-    console.log("event target: ", event.target);
-    setValues(formDefault);
+    setValues({ ...formDefault, [event.target.name]: event.target.value });
+    setFiles([]);
   };
 
-  console.log("values: ", values);
+  const router = useRouter();
+
+  const onSubmit = () => {
+    const form = new FormData();
+    form.append("name", values.name);
+    form.append("type", values.type);
+    form.append("description", values.description);
+    form.append("price", values.price);
+    form.append("author", values.author);
+    form.append("editorial", values.editorial);
+    files.forEach((file) => {
+      form.append("image", file);
+    });
+    saveFiles(form).then(() => router.push("/"));
+  };
+
   const isBook = values.type === "Libro";
 
   return (
@@ -80,7 +98,7 @@ export default function ArticleForm() {
               name="description"
               label="Descripción"
               variant="standard"
-              type="description"
+              type="text"
               value={values.description}
               onChange={handleChange}
               required
@@ -127,22 +145,13 @@ export default function ArticleForm() {
             md={6}
             className={`${styles.articleForm} ${styles.articleImages}`}
           >
-            <TextField
-              name="images"
-              label="Imágenes"
-              variant="standard"
-              type="text"
-              value={values.images}
-              onChange={handleChange}
-              required
-              sx={{ alignSelf: "stretch", margin: "0 3rem" }}
-            />
+            <ImageUploader files={files} setFiles={setFiles} />
             <div className={styles.articlePublish}>
               <ButtonPrimary
                 children="Publicar artículo"
                 variant="contained"
                 className={styles.articleButton}
-                // onClick={handleSubmit}
+                onClick={onSubmit}
               />
               <div className={styles.articlePublish}>
                 <Note note="Cancelar" href="/" />
