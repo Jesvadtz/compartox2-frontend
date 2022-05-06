@@ -95,8 +95,8 @@ export default function Navbar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+      <MenuItem onClick={handleMenuClose}>Crear cuenta</MenuItem>
       <MenuItem onClick={handleMenuClose}>Iniciar Sesión</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Crear Cuenta</MenuItem>
     </Menu>
   );
 
@@ -120,11 +120,13 @@ export default function Navbar() {
             </Search>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "block" } }}>
+              <Link href="/signup">
+                <ButtonText variant="text" color="gray">
+                  Crear cuenta
+                </ButtonText>
+              </Link>
               <Link href="/login">
                 <ButtonText variant="text">Iniciar sesión</ButtonText>
-              </Link>
-              <Link href="/signup">
-                <ButtonText variant="text">Crear cuenta</ButtonText>
               </Link>
             </Box>
             <Box sx={{ display: { md: "flex" } }}>

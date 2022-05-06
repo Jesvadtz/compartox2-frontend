@@ -1,10 +1,10 @@
 const HOST = process.env.NEXT_PUBLIC_BACKEND || "";
 
-const saveFiles = async (formData) => {
+const saveArticle = async (formData) => {
   try {
     const user = JSON.parse(localStorage.getItem("user"));
     console.log("usertoken", user.token);
-    const result = await fetch(`${HOST}/files`, {
+    const result = await fetch(`${HOST}/articles`, {
       method: "POST",
       body: formData,
       headers: {
@@ -20,4 +20,4 @@ const saveFiles = async (formData) => {
   }
 };
 
-export default saveFiles;
+export default saveArticle;
