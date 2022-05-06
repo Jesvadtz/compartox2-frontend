@@ -1,0 +1,18 @@
+.previewTitle span {
+  font-size: 1rem;
+  width: 92px;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-align: left;
+}
+.previewTitle {
+  padding: 0 0 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.previewImage {
+  width: 50px !important;
+}

@@ -13,7 +13,7 @@ import Note from "../Note";
 import Layout from "../Layout";
 import Title from "../Title";
 import ImageUploader from "../ImageUploader";
-import saveFiles from "../../services/files/saveFiles";
+import saveArticle from "../../services/files/saveArticle";
 
 import styles from "./ArticleForm.module.scss";
 
@@ -21,7 +21,7 @@ const formDefault = {
   name: "",
   type: "Material",
   description: "",
-  price: 0,
+  price: "",
   author: "",
   editorial: "",
 };
@@ -40,21 +40,23 @@ export default function ArticleForm() {
 
   const router = useRouter();
 
+  const isBook = values.type === "Libro";
+
   const onSubmit = () => {
     const form = new FormData();
     form.append("name", values.name);
     form.append("type", values.type);
     form.append("description", values.description);
     form.append("price", values.price);
-    form.append("author", values.author);
-    form.append("editorial", values.editorial);
+    if (isBook) {
+      form.append("author", values.author);
+      form.append("editorial", values.editorial);
+    }
     files.forEach((file) => {
       form.append("image", file);
     });
-    saveFiles(form).then(() => router.push("/"));
+    saveArticle(form).then(() => router.push("/"));
   };
-
-  const isBook = values.type === "Libro";
 
   return (
     <Layout>
@@ -64,16 +66,6 @@ export default function ArticleForm() {
         </div>
         <Grid container spacing={2} className={styles.article}>
           <Grid item xs={12} md={6} className={styles.articleForm}>
-            <TextField
-              name="name"
-              label={isBook ? "Título de libro" : "Nombre del artículo"}
-              variant="standard"
-              type="text"
-              value={values.name}
-              onChange={handleChange}
-              required
-              sx={{ alignSelf: "stretch", margin: "0 3rem" }}
-            />
             <FormControl fullWidth variant="standard">
               <InputLabel sx={{ alignSelf: "stretch", margin: "0 3rem" }}>
                 Tipo de artículo
@@ -94,6 +86,16 @@ export default function ArticleForm() {
                 <MenuItem value={"Libro"}>Libro</MenuItem>
               </Select>
             </FormControl>
+            <TextField
+              name="name"
+              label={isBook ? "Título de libro" : "Nombre del artículo"}
+              variant="standard"
+              type="text"
+              value={values.name}
+              onChange={handleChange}
+              required
+              sx={{ alignSelf: "stretch", margin: "0 3rem" }}
+            />
             <TextField
               name="description"
               label="Descripción"

@@ -12,6 +12,9 @@ const theme = createTheme({
     white: {
       main: "#ffffff",
     },
+    gray: {
+      main: "#959595",
+    },
   },
   typography: {
     fontFamily: "Work Sans",

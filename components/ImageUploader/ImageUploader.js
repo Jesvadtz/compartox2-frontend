@@ -1,6 +1,8 @@
 import React from "react";
 import { FileUploader } from "react-drag-drop-files";
 import ImagePreviewCard from "../ImagePreviewCard";
+import UploaderImage from "../UploaderImage";
+import styles from "../ArticleForm/ArticleForm.module.scss";
 
 const fileTypes = ["JPG", "JPEG", "PNG"];
 
@@ -19,23 +21,27 @@ const ImageUploader = ({ files, setFiles }) => {
   };
 
   return (
-    <div>
-      {files.length > 0 &&
-        files.map((f) => (
-          <ImagePreviewCard
-            src={URL.createObjectURL(f)}
-            name={f.name}
-            onDelete={() => handleRemove(f)}
-            key={`${f.name}${f.lastModified}`}
-          />
-        ))}
+    <div className={styles.articleUploader}>
+      <div className={styles.articleFiles}>
+        {files.length > 0 &&
+          files.map((f) => (
+            <ImagePreviewCard
+              src={URL.createObjectURL(f)}
+              name={f.name}
+              onDelete={() => handleRemove(f)}
+              key={`${f.name}${f.lastModified}`}
+            />
+          ))}
+      </div>
       <FileUploader
         handleChange={handleAdd}
         name="file"
         types={fileTypes}
         fileOrFiles={null}
         multiple
-      />
+      >
+        <UploaderImage />
+      </FileUploader>
     </div>
   );
 };
