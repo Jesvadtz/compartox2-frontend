@@ -1,8 +1,8 @@
 const HOST = process.env.NEXT_PUBLIC_BACKEND || "";
 
-const fetchFiles = async () => {
+const fetchArticles = async () => {
   try {
-    const result = await fetch(`${HOST}/files`);
+    const result = await fetch(`${HOST}/articles`);
     console.log("result", result);
     const data = await result.json();
     console.log("data", data);
@@ -12,4 +12,4 @@ const fetchFiles = async () => {
   }
 };
 
-export default fetchFiles;
+export default fetchArticles;
