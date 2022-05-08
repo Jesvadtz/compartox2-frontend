@@ -13,7 +13,7 @@ import Note from "../Note";
 import Layout from "../Layout";
 import Title from "../Title";
 import ImageUploader from "../ImageUploader";
-import saveArticle from "../../services/files/saveArticle";
+import saveArticle from "../../services/articles/saveArticle";
 
 import styles from "./ArticleForm.module.scss";
 

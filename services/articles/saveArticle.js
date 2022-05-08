@@ -1,3 +1,5 @@
+import { Alert } from "@mui/material";
+
 const HOST = process.env.NEXT_PUBLIC_BACKEND || "";
 
 const saveArticle = async (formData) => {
@@ -13,10 +15,11 @@ const saveArticle = async (formData) => {
       mode: "cors",
     });
     const data = await result.json();
+    <Alert severity="success">¡El artículo se ha creado exitosamente!</Alert>;
     console.log("data", data);
     return data;
   } catch (error) {
-    console.log("ERROR!!!!", error);
+    <Alert severity="error">Error al crear el artículo</Alert>;
   }
 };
 
