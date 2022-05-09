@@ -1,0 +1,57 @@
+.detailDataContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+.detailData {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.detailBook {
+  margin-top: 0.5rem;
+}
+.detailTitle {
+  font-size: 1rem;
+  line-height: 1.2rem;
+}
+.detailContent {
+  max-width: 154px;
+  font-size: 0.8rem;
+  color: #55555a;
+  font-weight: 400;
+}
+
+@media (min-width: 900px) {
+  .detailDataCard {
+    margin-left: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .detailInfo {
+    flex: 1;
+  }
+  .detailBook {
+    margin-top: 1rem;
+  }
+  .detailCard {
+    display: flex;
+    justify-content: space-between;
+  }
+  .detailDataCard {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    gap: 2rem;
+  }
+  .detailDataContainer {
+    margin-top: 40px;
+  }
+  .detailTitle {
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+  }
+}
