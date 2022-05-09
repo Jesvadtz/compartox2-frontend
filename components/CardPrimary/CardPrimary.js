@@ -3,9 +3,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import { CardActionArea } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 import styles from "./CardPrimary.module.scss";
@@ -27,7 +25,6 @@ export default function CardPrimary({
 }) {
   return (
     <CardStyled>
-      {/* <CardActionArea> */}
       <CardMedia className={styles.cardImage}>
         <Image src={src} width="500px" height="500px" layout="responsive" />
       </CardMedia>
@@ -64,7 +61,6 @@ export default function CardPrimary({
           </Typography>
         </div>
       </CardContent>
-      {/* </CardActionArea> */}
     </CardStyled>
   );
 }
