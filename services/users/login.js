@@ -1,5 +1,3 @@
-import { ResetTvOutlined } from "@mui/icons-material";
-import jwt from "jwt-decode";
 const HOST = process.env.NEXT_PUBLIC_BACKEND || "";
 
 const login = async (body) => {
@@ -15,8 +13,7 @@ const login = async (body) => {
     if (response.ok) {
       const data = await response.json();
       if (data.success === true) {
-        const user = jwt(data.data.token).data;
-        return { data: user, token: data.data.token };
+        return { token: data.data.token };
       }
       throw new Error("Compruebe su email y contraseña");
     }
