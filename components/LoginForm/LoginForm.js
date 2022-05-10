@@ -14,6 +14,7 @@ import styles from "./LoginForm.module.scss";
 
 import login from "../../services/users/login";
 import getUser from "../../services/users/getUser";
+import Image from "next/image";
 
 export default function Login() {
   const [values, setValues] = useState({});
@@ -41,8 +42,22 @@ export default function Login() {
     <Layout showNavbar={false} showFooter={false}>
       <Grid container className={styles.login}>
         <Grid item xs={12} sm={6} className={styles.loginTitle}>
-          <img src="./compartox2.svg" className={styles.loginLogo} />
-          <img src="./illustrations/ilu-04.svg" className={styles.loginImage} />
+          <Image
+            src="/compartox2.svg"
+            width="100%"
+            height="100%"
+            layout="responsive"
+            alt="compartox2-logo"
+            className={styles.loginLogo}
+          />
+          <Image
+            src="/illustrations/ilu-04.svg"
+            width="100%"
+            height="100%"
+            layout="responsive"
+            alt="compartox2-login-illustration"
+            className={styles.loginImage}
+          />
         </Grid>
         <Grid item xs={12} sm={6} className={styles.loginInputs}>
           <Title title="Bienvenido" />
@@ -67,11 +82,9 @@ export default function Login() {
             required
             sx={{ alignSelf: "stretch", margin: "0 3rem" }}
           />
-          <ButtonPrimary
-            children="Ingresar"
-            variant="contained"
-            onClick={handleSubmit}
-          />
+          <ButtonPrimary variant="contained" onClick={handleSubmit}>
+            Ingresar
+          </ButtonPrimary>
           {error && (
             <Alert variant="standard" color="error">
               {error}

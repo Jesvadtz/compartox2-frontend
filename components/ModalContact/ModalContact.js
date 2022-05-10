@@ -38,12 +38,13 @@ export default function ModalContact({ open, onClose, onClick }) {
           >
             Contacta al vendedor para poder comprar el producto.
           </Typography>
-          <ButtonPrimary
-            children="Contactar por WhatsApp"
-            variant="contained"
-          />
-          <ButtonPrimary children="Contactar por Email" variant="outlined" />
-          <ButtonPrimary children="Cancelar" variant="text" onClick={onClick} />
+          <ButtonPrimary variant="contained">
+            Contactar por WhatsApp
+          </ButtonPrimary>
+          <ButtonPrimary variant="outlined">Contactar por Email</ButtonPrimary>
+          <ButtonPrimary variant="text" onClick={onClick}>
+            Cancelar
+          </ButtonPrimary>
         </Box>
       </Modal>
     </div>

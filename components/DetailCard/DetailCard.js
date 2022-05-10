@@ -51,9 +51,10 @@ export default function DetailCard({ article }) {
           <CardMedia className={stylesDetail.detailCardImage}>
             <Image
               src={photo}
-              width="500px"
+              width="400px"
               height="500px"
               layout="responsive"
+              alt="image-article"
             />
           </CardMedia>
           <CardContent
@@ -103,11 +104,9 @@ export default function DetailCard({ article }) {
                     </Typography>
                   </div>
                 )}
-                <ButtonPrimary
-                  children="Lo quiero"
-                  variant="contained"
-                  onClick={handleOpen}
-                />
+                <ButtonPrimary variant="contained" onClick={handleOpen}>
+                  Lo quiero
+                </ButtonPrimary>
               </div>
             </div>
             <Divider orientation="vertical" flexItem />

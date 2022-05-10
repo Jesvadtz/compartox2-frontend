@@ -46,11 +46,9 @@ export default function ListItems({
           <Divider variant="inset" component="li" sx={{ marginLeft: 0 }} />
         </div>
       </List>
-      <ButtonPrimary
-        children="Vender artículo"
-        variant="contained"
-        href="/newarticle"
-      />
+      <ButtonPrimary variant="contained" href="/newarticle">
+        Vender artículo
+      </ButtonPrimary>
     </>
   );
 }
