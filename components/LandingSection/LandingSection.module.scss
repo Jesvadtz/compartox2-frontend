@@ -5,15 +5,12 @@
   margin-top: 2rem;
   padding: 0 1rem;
 }
-.landingText {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
 .landingImage {
   width: 100%;
 }
-
+.landingButton {
+  width: 100%;
+}
 @media (min-width: 640px) {
   .landingSection {
     justify-content: center;

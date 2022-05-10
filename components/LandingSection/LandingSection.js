@@ -13,12 +13,13 @@ export default function LandingSection({ title, subtitle, children, src }) {
       <Grid item xs={6} md={6} lg={6} className={styles.landingText}>
         <Title title={title} />
         <Subtitle subtitle={subtitle}></Subtitle>
-        <div>
-          {" "}
-          <ButtonPrimary variant="contained" href="/catalogue">
-            {children}
-          </ButtonPrimary>
-        </div>
+        <ButtonPrimary
+          variant="contained"
+          href="/catalogue"
+          className={styles.landingButton}
+        >
+          {children}
+        </ButtonPrimary>
       </Grid>
       <Grid item xs={6} md={6} lg={4} className={styles.landingContainerImg}>
         <Image
