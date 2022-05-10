@@ -6,7 +6,7 @@ const ButtonPrimary = styled(Button)(() => ({
   textTransform: "none",
   fontSize: "16px",
   fontWeight: "400",
-  width: "220px",
+  minWidth: "220px",
   marginTop: "1rem",
 }));
 

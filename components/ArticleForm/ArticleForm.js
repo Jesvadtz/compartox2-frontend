@@ -154,6 +154,7 @@ export default function ArticleForm() {
                 variant="contained"
                 className={styles.articleButton}
                 onClick={onSubmit}
+                href="/catalogue"
               />
               <div className={styles.articlePublish}>
                 <Note note="Cancelar" href="/" />

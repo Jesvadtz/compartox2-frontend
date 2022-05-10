@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 import { Alert, Grid } from "@mui/material";
 import TextField from "@mui/material/TextField";
@@ -10,8 +11,9 @@ import Subtitle from "../Subtitle";
 import Title from "../Title";
 
 import styles from "./LoginForm.module.scss";
+
 import login from "../../services/users/login";
-import { useRouter } from "next/router";
+import getUser from "../../services/users/getUser";
 
 export default function Login() {
   const [values, setValues] = useState({});
@@ -26,9 +28,11 @@ export default function Login() {
 
   const handleSubmit = async () => {
     try {
-      const data = await login(values);
-      localStorage.setItem("user", JSON.stringify(data));
-      router.replace("/");
+      const { token } = await login(values);
+      const user = await getUser(token);
+
+      localStorage.setItem("user", JSON.stringify({ token, user }));
+      router.replace("/dashboard");
     } catch (error) {
       setError("Error. Compruebe su usuario y/o constraseña");
     }
