@@ -7,7 +7,7 @@ const ButtonPrimary = styled(Button)(() => ({
   fontSize: "16px",
   fontWeight: "400",
   minWidth: "220px",
-  marginTop: "1rem",
+  marginTop: "2rem",
 }));
 
 export default ButtonPrimary;
