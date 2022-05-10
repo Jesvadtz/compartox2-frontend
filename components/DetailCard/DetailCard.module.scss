@@ -1,0 +1,84 @@
+.detailContainer {
+  margin-top: 2rem;
+}
+
+.detailDataContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+.detailData {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.detailBook {
+  margin-top: 0.5rem;
+}
+.detailTitle {
+  font-size: 1rem;
+  line-height: 1.2rem;
+}
+.detailContent {
+  width: 100%;
+  font-size: 0.8rem;
+  color: #55555a;
+  font-weight: 400;
+}
+.detailCardImage img {
+  border-radius: 0.5rem;
+  background-color: none;
+}
+.detailCardImage {
+  border-radius: 0.5rem;
+  box-shadow: 3px 3px 6px #3b455935;
+}
+
+@media (min-width: 900px) {
+  .detailDataCard {
+    margin-left: 2rem;
+  }
+  .detailCardImage {
+    width: 450px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .detailContent {
+    font-size: 1rem;
+  }
+  .detailInfo {
+    flex: 1;
+  }
+  .detailBook {
+    margin-top: 1rem;
+  }
+  .detailCard {
+    display: flex;
+    justify-content: space-between;
+  }
+  .detailDataCard {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    gap: 2rem;
+  }
+  .detailDataContainer {
+    margin-top: 40px;
+  }
+  .detailTitle {
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+  }
+  .detailContainer {
+    margin-top: 4rem;
+    height: calc(100vh - 195px);
+  }
+}
+@media (min-width: 1200px) {
+  .detailCardImage {
+    width: 500px;
+  }
+}

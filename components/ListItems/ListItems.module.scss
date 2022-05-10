@@ -1,0 +1,22 @@
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.listContainer {
+  margin: 1rem 0;
+}
+@media (min-width: 768px) {
+  .listContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+  .listItem {
+    width: 350px;
+  }
+}
+@media (min-width: 1024px) {
+  .listItem {
+    width: 480px;
+  }
+}

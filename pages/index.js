@@ -16,6 +16,7 @@ export default function Home() {
         subtitle="Conoce los beneficios de utilizar nuestra aplicación para vender esos materiales o libros que ya no utilizas."
         children="Me interesa"
         src="./illustrations/ilu-02.svg"
+        href="/signup"
       />
       <LandingSectionBg
         title="Si prefieres productos nuevos, tenemos los mejores"
@@ -23,6 +24,7 @@ export default function Home() {
         children="Ver artículos"
         src="./illustrations/ilu-03.svg"
         bgWhite
+        href="/"
       />
     </Layout>
   );

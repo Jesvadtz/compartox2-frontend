@@ -12,6 +12,7 @@ export default function LandingSectionBg({
   children,
   src,
   bgWhite,
+  href,
 }) {
   return (
     <Grid
@@ -21,7 +22,9 @@ export default function LandingSectionBg({
       <Grid item xs={12} md={6} className={styles.landingTextBg}>
         <Title title={title} />
         <Subtitle subtitle={subtitle}></Subtitle>
-        <ButtonPrimary variant="contained">{children}</ButtonPrimary>
+        <ButtonPrimary variant="contained" href={href}>
+          {children}
+        </ButtonPrimary>
       </Grid>
       <Grid item xs={8} md={4} className={styles.landingSecImage}>
         <img src={src} className={styles.landingImageBg} />

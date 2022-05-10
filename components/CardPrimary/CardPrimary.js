@@ -1,11 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
+
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import { CardActionArea } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 import styles from "./CardPrimary.module.scss";
@@ -24,12 +24,18 @@ export default function CardPrimary({
   title,
   content,
   userLocation,
+  id,
 }) {
   return (
     <CardStyled>
-      {/* <CardActionArea> */}
       <CardMedia className={styles.cardImage}>
-        <Image src={src} width="500px" height="500px" layout="responsive" />
+        <Image
+          src={src}
+          width="500px"
+          height="500px"
+          layout="responsive"
+          priority="true"
+        />
       </CardMedia>
       <CardContent className={styles.cardContainer}>
         <Typography
@@ -46,7 +52,7 @@ export default function CardPrimary({
         </Typography>
         <div>
           <Typography variant="h6" className={styles.cardTitle}>
-            {title}
+            <Link href={`/article/${id}`}>{title}</Link>
           </Typography>
           <Typography
             variant="body2"
@@ -64,7 +70,6 @@ export default function CardPrimary({
           </Typography>
         </div>
       </CardContent>
-      {/* </CardActionArea> */}
     </CardStyled>
   );
 }
