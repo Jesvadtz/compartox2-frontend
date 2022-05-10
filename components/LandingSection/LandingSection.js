@@ -1,4 +1,5 @@
 import { Grid } from "@mui/material";
+import Image from "next/image";
 
 import Title from "../Title";
 import Subtitle from "../Subtitle";
@@ -20,7 +21,13 @@ export default function LandingSection({ title, subtitle, children, src }) {
         </div>
       </Grid>
       <Grid item xs={6} md={6} lg={4} className={styles.landingContainerImg}>
-        <img src={src} className={styles.landingImage} />
+        <Image
+          src={src}
+          width="300px"
+          height="400px"
+          alt="compartox2-landing"
+          className={styles.landingImage}
+        />
       </Grid>
     </Grid>
   );

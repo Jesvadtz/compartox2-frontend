@@ -13,6 +13,7 @@ import Container from "@mui/material/Container";
 
 import ButtonText from "./ButtonText";
 import MenuMobile from "../components/MenuMobile";
+import Image from "next/image";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -69,8 +70,13 @@ export default function Navbar() {
         <Container maxWidth="lg">
           <Toolbar disableGutters>
             <MenuMobile />
-            <Link href="/">
-              <img src="/compartox2.svg" />
+            <Link href="/" passHref>
+              <Image
+                src="/compartox2.svg"
+                width="86px"
+                height="21px"
+                alt="compartox2-logo"
+              />
             </Link>
             <Search>
               <SearchIconWrapper>
@@ -83,7 +89,7 @@ export default function Navbar() {
             </Search>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "block" } }}>
-              <Link href={user ? `/` : `/signup`}>
+              <Link href={user ? `/` : `/signup`} passHref>
                 <ButtonText
                   variant="text"
                   color="gray"
@@ -92,7 +98,7 @@ export default function Navbar() {
                   {user ? `Cerrar Sesión` : `Crear cuenta`}
                 </ButtonText>
               </Link>
-              <Link href={user ? `/dashboard` : `/login`}>
+              <Link href={user ? `/dashboard` : `/login`} passHref>
                 <ButtonText variant="text">
                   {user ? `Mi perfil` : `Iniciar Sesión`}
                 </ButtonText>
@@ -100,7 +106,13 @@ export default function Navbar() {
             </Box>
             <Box sx={{ display: { md: "flex" } }}>
               <IconButton size="large" edge="end" color="inherit">
-                <img src="/avatar.svg" />
+                <Image
+                  src="/avatar.svg"
+                  width="56px"
+                  height="56px"
+                  layout="responsive"
+                  alt="compartox2-avatar"
+                />
               </IconButton>
             </Box>
           </Toolbar>

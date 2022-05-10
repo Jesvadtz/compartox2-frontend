@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 import { Alert, Grid } from "@mui/material";
 import TextField from "@mui/material/TextField";
@@ -47,9 +48,20 @@ export default function Signup() {
           sm={6}
           className={`${styles.loginTitle} ${styles.signupTitle}`}
         >
-          <img src="./compartox2.svg" className={styles.loginLogo} />
-          <img
-            src="./illustrations/ilu-05.svg"
+          <Image
+            src="/compartox2.svg"
+            width="70px"
+            height="unset"
+            layout="responsive"
+            alt="compartox2-logo"
+            className={styles.loginLogo}
+          />
+          <Image
+            src="/illustrations/ilu-05.svg"
+            width="auto"
+            height="320px"
+            layout="responsive"
+            alt="compartox2-landingpage"
             className={`${styles.loginImage} ${styles.signupImage}`}
           />
         </Grid>
@@ -133,11 +145,9 @@ export default function Signup() {
             required
             sx={{ alignSelf: "stretch", margin: "0 3rem" }}
           />
-          <ButtonPrimary
-            children="Crear cuenta"
-            variant="contained"
-            onClick={handleSubmit}
-          />
+          <ButtonPrimary variant="contained" onClick={handleSubmit}>
+            Crear cuenta
+          </ButtonPrimary>
           {error && (
             <Alert variant="standard" color="error">
               {error}

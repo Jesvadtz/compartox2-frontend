@@ -150,12 +150,13 @@ export default function ArticleForm() {
             <ImageUploader files={files} setFiles={setFiles} />
             <div className={styles.articlePublish}>
               <ButtonPrimary
-                children="Publicar artículo"
                 variant="contained"
                 className={styles.articleButton}
                 onClick={onSubmit}
                 href="/catalogue"
-              />
+              >
+                Publicar artículo
+              </ButtonPrimary>
               <div className={styles.articlePublish}>
                 <Note note="Cancelar" href="/" />
               </div>

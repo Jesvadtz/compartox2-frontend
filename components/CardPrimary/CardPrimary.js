@@ -31,9 +31,10 @@ export default function CardPrimary({
       <CardMedia className={styles.cardImage}>
         <Image
           src={src}
-          width="500px"
-          height="500px"
+          width="350px"
+          height="400px"
           layout="responsive"
+          alt="image-article"
           priority="true"
         />
       </CardMedia>
