@@ -30,8 +30,9 @@ export default function Login() {
     try {
       const { token } = await login(values);
       const user = await getUser(token);
+
       localStorage.setItem("user", JSON.stringify({ token, user }));
-      router.replace("/");
+      router.replace("/dashboard");
     } catch (error) {
       setError("Error. Compruebe su usuario y/o constraseña");
     }

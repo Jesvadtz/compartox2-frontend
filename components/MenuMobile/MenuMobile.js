@@ -1,20 +1,23 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
+
+import Title from "../Title";
 
 import styles from "./MenuMobile.module.scss";
 
 export default function MenuMobile() {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [user, setUser] = useState({});
 
   const toggleDrawer = (open) => (event) => {
     if (
@@ -23,45 +26,55 @@ export default function MenuMobile() {
     ) {
       return;
     }
-
     setExpanded(open);
   };
 
+  useEffect(() => {
+    const userLocalStorage = localStorage.getItem("user");
+    const userData = JSON.parse(userLocalStorage);
+    setUser(userData?.user);
+  }, []);
+
   const list = () => (
     <Box
-      sx={{ width: 250 }}
+      sx={{ width: 250, paddingTop: "2rem" }}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        <ListItem button>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary={"Crear Cuenta"} />
+        <ListItem>
+          <Title title={`Hola, ${user?.name} !`} />
         </ListItem>
+        <Link href={user ? `/dashboard` : `/login`}>
+          <ListItem button>
+            <ListItemText primary={user ? `Mi perfil` : `Iniciar Sesión`} />
+          </ListItem>
+        </Link>
         <ListItem button>
-          <ListItemIcon>
-            <MailIcon />
-          </ListItemIcon>
-          <ListItemText primary={"Ingresar"} />
+          <ListItemText primary={user ? `Favoritos` : ``} />
         </ListItem>
+        <Link
+          href={user ? `/` : `/signup`}
+          onClick={() => localStorage.removeItem("user")}
+        >
+          <ListItem button>
+            <ListItemText secondary={user ? `Cerrar Sesión` : `Crear cuenta`} />
+          </ListItem>
+        </Link>
       </List>
       <Divider />
       <List>
-        <ListItem button>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary={"Ver Materiales"} />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <MailIcon />
-          </ListItemIcon>
-          <ListItemText primary={"Ver Libros"} />
-        </ListItem>
+        <Link href="/catalogue">
+          <ListItem button>
+            <ListItemText primary={"Catálogo de artículos"} />
+          </ListItem>
+        </Link>
+        <Link href="/">
+          <ListItem button>
+            <ListItemText primary={"Mercado Libre"} />
+          </ListItem>
+        </Link>
       </List>
     </Box>
   );

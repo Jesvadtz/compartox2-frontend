@@ -15,13 +15,18 @@ export default function Dashboard() {
     const userData = JSON.parse(userLocalStorage);
     setUser(userData.user);
   }, []);
-  console.log("user", user);
+
+  const articleCount = user.articles?.length;
+  const favoritesCount = user.favorites?.length;
 
   return (
     <Layout>
       <Container className={styles.dashboard}>
-        <Title title={`Bienvenid@ ${user?.name}`} />
-        <ListItems />
+        <Title title={`Hola, ${user?.name} !`} />
+        <ListItems
+          articleCount={articleCount}
+          favoritesCount={favoritesCount}
+        />
       </Container>
     </Layout>
   );
