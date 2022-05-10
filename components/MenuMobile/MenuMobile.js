@@ -46,7 +46,7 @@ export default function MenuMobile() {
         <ListItem>
           <Title title={`Hola, ${user?.name} !`} />
         </ListItem>
-        <Link href={user ? `/dashboard` : `/login`}>
+        <Link href={user ? `/dashboard` : `/login`} passHref>
           <ListItem button>
             <ListItemText primary={user ? `Mi perfil` : `Iniciar Sesión`} />
           </ListItem>
@@ -55,6 +55,7 @@ export default function MenuMobile() {
           <ListItemText primary={user ? `Favoritos` : ``} />
         </ListItem>
         <Link
+          passHref
           href={user ? `/` : `/signup`}
           onClick={() => localStorage.removeItem("user")}
         >
@@ -65,12 +66,12 @@ export default function MenuMobile() {
       </List>
       <Divider />
       <List>
-        <Link href="/catalogue">
+        <Link href="/catalogue" passHref>
           <ListItem button>
             <ListItemText primary={"Catálogo de artículos"} />
           </ListItem>
         </Link>
-        <Link href="/">
+        <Link href="/" passHref>
           <ListItem button>
             <ListItemText primary={"Mercado Libre"} />
           </ListItem>
