@@ -19,16 +19,16 @@
 }
 
 @media (min-width: 640px) {
-  .bgWhite {
-    flex-direction: row;
-    justify-content: flex-end;
-    gap: 1rem;
-  }
   .landingSectionBg {
     flex-direction: row-reverse;
     justify-content: center;
     margin-bottom: 2rem;
     padding: 2rem 2rem 0 2rem;
+  }
+  .bgWhite {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 1rem;
   }
   .landingTextBg {
     align-items: flex-start;
