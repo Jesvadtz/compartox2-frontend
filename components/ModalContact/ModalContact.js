@@ -18,7 +18,13 @@ const style = {
   textAlign: "center",
 };
 
-export default function ModalContact({ open, onClose, onClick }) {
+export default function ModalContact({
+  open,
+  onClose,
+  onClick,
+  name,
+  userName,
+}) {
   return (
     <div>
       <Modal
@@ -28,16 +34,25 @@ export default function ModalContact({ open, onClose, onClick }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            sx={{ fontWeight: "bold" }}
+          >
             ¡Ya casi es tuyo!
           </Typography>
           <Typography
             id="modal-modal-description"
-            variant="body2"
+            variant="body1"
             sx={{ mt: 2, mb: 2 }}
           >
             Contacta al vendedor para poder comprar el producto.
           </Typography>
+          <Typography variant="body2" sx={{ mt: 2, fontWeight: "bold" }}>
+            {name}
+          </Typography>
+          <Typography variant="body2">{userName}</Typography>
           <ButtonPrimary variant="contained">
             Contactar por WhatsApp
           </ButtonPrimary>

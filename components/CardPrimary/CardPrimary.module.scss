@@ -21,6 +21,9 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+.cardTitle:hover {
+  color: #353ffc;
+}
 .cardContent {
   display: -webkit-box;
   overflow: hidden;

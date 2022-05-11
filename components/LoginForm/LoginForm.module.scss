@@ -1,4 +1,6 @@
 .login {
+  display: flex;
+  flex-direction: column;
   margin-top: 1rem;
 }
 .signupTitle {
@@ -10,15 +12,6 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  padding-right: 3rem;
-}
-.loginInputs,
-.loginSignUp {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
 }
 .loginSignUp {
   margin-top: 1.2rem;
@@ -31,8 +24,24 @@
   gap: 1rem;
 }
 .signupImage {
-  height: 320px;
+  height: 100px;
   align-self: flex-start;
+}
+.loginInputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: stretch;
+}
+.loginSignUp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: stretch;
 }
 
 @media (min-width: 600px) {
@@ -43,7 +52,7 @@
     margin-top: 0;
   }
   .loginImage {
-    width: 800px;
+    height: 800px;
   }
   .loginLogo {
     display: block;
@@ -54,17 +63,18 @@
     background-color: #fdd534;
     justify-content: space-around;
     align-items: center;
-    padding-left: 10rem;
   }
   .signupImage {
-    height: unset;
-    align-self: unset;
+    height: 400px;
+    align-self: center;
   }
   .loginSignUp {
     margin-top: 2.5rem;
     gap: 0.5rem;
+    align-self: center;
   }
   .loginInputs {
     gap: 1rem;
+    align-self: center;
   }
 }

@@ -73,8 +73,8 @@ export default function Navbar() {
             <Link href="/" passHref>
               <Image
                 src="/compartox2.svg"
-                width="86px"
-                height="21px"
+                width="100px"
+                height="30px"
                 alt="compartox2-logo"
               />
             </Link>
@@ -108,8 +108,8 @@ export default function Navbar() {
               <IconButton size="large" edge="end" color="inherit">
                 <Image
                   src="/avatar.svg"
-                  width="56px"
-                  height="56px"
+                  width="40px"
+                  height="40px"
                   alt="compartox2-avatar"
                 />
               </IconButton>

@@ -32,6 +32,9 @@
   flex-wrap: wrap;
   gap: 0.5rem;
 }
+.articlePublish {
+  margin-top: 1.5rem;
+}
 @media (min-width: 900px) {
   .article {
     display: flex;
@@ -53,6 +56,7 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    margin-top: 1.5rem;
   }
   .articleLayout {
     height: calc(100vh - 132px);

@@ -41,7 +41,7 @@ export default function CardPrimary({
       <CardContent className={styles.cardContainer}>
         <Typography
           gutterBottom
-          variant="h5"
+          variant="h6"
           component="div"
           className={styles.cardPrice}
         >
@@ -52,12 +52,16 @@ export default function CardPrimary({
           </IconButton>
         </Typography>
         <div>
-          <Typography variant="h6" className={styles.cardTitle}>
+          <Typography
+            variant="body1"
+            className={styles.cardTitle}
+            sx={{ fontWeight: "bold" }}
+          >
             <Link href={`/article/${id}`}>{title}</Link>
           </Typography>
           <Typography
             variant="body2"
-            color="text.secondary"
+            color="text.primary"
             className={styles.cardContent}
           >
             {content}
