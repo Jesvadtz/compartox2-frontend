@@ -138,7 +138,13 @@ export default function DetailCard({ article }) {
           </CardContent>
         </CardStyled>
       </Container>
-      <ModalContact open={open} onClose={handleClose} onClick={handleOpen} />
+      <ModalContact
+        open={open}
+        onClose={handleClose}
+        onClick={handleOpen}
+        name={name}
+        userName={userName}
+      />
     </>
   );
 }
