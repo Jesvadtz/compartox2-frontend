@@ -53,7 +53,6 @@ export default function DetailCard({ article }) {
               src={photo}
               width="400px"
               height="500px"
-              layout="responsive"
               alt="image-article"
             />
           </CardMedia>

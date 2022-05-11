@@ -44,17 +44,15 @@ export default function Login() {
         <Grid item xs={12} sm={6} className={styles.loginTitle}>
           <Image
             src="/compartox2.svg"
-            width="100%"
-            height="100%"
-            layout="responsive"
+            width="144px"
+            height="50px"
             alt="compartox2-logo"
             className={styles.loginLogo}
           />
           <Image
             src="/illustrations/ilu-04.svg"
-            width="100%"
-            height="100%"
-            layout="responsive"
+            width="100px"
+            height="200px"
             alt="compartox2-login-illustration"
             className={styles.loginImage}
           />

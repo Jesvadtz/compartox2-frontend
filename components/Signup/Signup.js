@@ -52,7 +52,6 @@ export default function Signup() {
             src="/compartox2.svg"
             width="70px"
             height="unset"
-            layout="responsive"
             alt="compartox2-logo"
             className={styles.loginLogo}
           />
@@ -60,7 +59,6 @@ export default function Signup() {
             src="/illustrations/ilu-05.svg"
             width="auto"
             height="320px"
-            layout="responsive"
             alt="compartox2-landingpage"
             className={`${styles.loginImage} ${styles.signupImage}`}
           />
