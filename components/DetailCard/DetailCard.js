@@ -53,7 +53,6 @@ export default function DetailCard({ article }) {
               src={photo}
               width="400px"
               height="500px"
-              layout="responsive"
               alt="image-article"
             />
           </CardMedia>
@@ -139,7 +138,13 @@ export default function DetailCard({ article }) {
           </CardContent>
         </CardStyled>
       </Container>
-      <ModalContact open={open} onClose={handleClose} onClick={handleOpen} />
+      <ModalContact
+        open={open}
+        onClose={handleClose}
+        onClick={handleOpen}
+        name={name}
+        userName={userName}
+      />
     </>
   );
 }

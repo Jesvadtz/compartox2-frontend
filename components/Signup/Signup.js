@@ -41,7 +41,13 @@ export default function Signup() {
 
   return (
     <Layout showNavbar={false} showFooter={false}>
-      <Grid container className={styles.login}>
+      <Grid
+        container
+        direction={{ xs: "column", sm: "row", md: "row", lg: "row" }}
+        justifyContent="center"
+        alignItems="center"
+        className={styles.login}
+      >
         <Grid
           item
           xs={12}
@@ -50,22 +56,30 @@ export default function Signup() {
         >
           <Image
             src="/compartox2.svg"
-            width="70px"
-            height="unset"
-            layout="responsive"
+            width="144px"
+            height="50px"
             alt="compartox2-logo"
+            layout="raw"
             className={styles.loginLogo}
           />
           <Image
             src="/illustrations/ilu-05.svg"
             width="auto"
             height="320px"
-            layout="responsive"
             alt="compartox2-landingpage"
+            layout="raw"
             className={`${styles.loginImage} ${styles.signupImage}`}
           />
         </Grid>
-        <Grid item xs={12} sm={6} className={styles.loginInputs}>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          className={styles.loginInputs}
+        >
           <Title title="Crea tu cuenta" />
           <TextField
             name="name"
@@ -153,7 +167,14 @@ export default function Signup() {
               {error}
             </Alert>
           )}
-          <Grid item xs={12} className={styles.loginSignUp}>
+          <Grid
+            item
+            xs={12}
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            className={styles.loginSignUp}
+          >
             <Subtitle subtitle="¿Ya tienes cuenta?" />
             <Note note="Inicia Sesión" href="/login" />
           </Grid>

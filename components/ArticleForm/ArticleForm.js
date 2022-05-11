@@ -64,8 +64,19 @@ export default function ArticleForm() {
         <div className={styles.articleTitle}>
           <Title title="Datos de artículo" />
         </div>
-        <Grid container spacing={2} className={styles.article}>
-          <Grid item xs={12} md={6} className={styles.articleForm}>
+        <Grid
+          container
+          spacing={2}
+          className={styles.article}
+          sx={{ marginBottom: "3rem" }}
+        >
+          <Grid
+            item
+            xs={12}
+            md={6}
+            direction="column"
+            className={styles.articleForm}
+          >
             <FormControl fullWidth variant="standard">
               <InputLabel sx={{ alignSelf: "stretch", margin: "0 3rem" }}>
                 Tipo de artículo
@@ -145,6 +156,7 @@ export default function ArticleForm() {
             item
             xs={12}
             md={6}
+            direction="column"
             className={`${styles.articleForm} ${styles.articleImages}`}
           >
             <ImageUploader files={files} setFiles={setFiles} />

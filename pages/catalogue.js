@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import Layout from "../components/Layout";
 import CatalogueCards from "../components/CatalogueCards";
 import getArticles from "../services/articles/getArticles";
 
@@ -15,5 +16,9 @@ export default function CataloguePage() {
     fetchArticles();
   }, []);
 
-  return <CatalogueCards articles={articles} />;
+  return (
+    <Layout>
+      <CatalogueCards articles={articles} />
+    </Layout>
+  );
 }
