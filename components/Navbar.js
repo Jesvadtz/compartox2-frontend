@@ -110,7 +110,6 @@ export default function Navbar() {
                   src="/avatar.svg"
                   width="56px"
                   height="56px"
-                  layout="responsive"
                   alt="compartox2-avatar"
                 />
               </IconButton>

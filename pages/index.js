@@ -1,8 +1,26 @@
+import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import LandingSection from "../components/LandingSection";
 import LandingSectionBg from "../components/LandingSectionBg";
+import CatalogueCards from "../components/CatalogueCards";
+
+import getArticles from "../services/articles/getArticles";
+import Title from "../components/Title";
+
+import styles from "../styles/Landing.module.scss";
 
 export default function Home() {
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      const dataArticles = await getArticles();
+      setArticles(dataArticles.data.articles);
+      console.log("dataArticles", dataArticles.data.articles);
+    };
+    fetchArticles();
+  }, []);
+
   return (
     <Layout>
       <LandingSection
@@ -29,6 +47,10 @@ export default function Home() {
       >
         Ver artículos
       </LandingSectionBg>
+      <section className={styles.homeTitle}>
+        <Title title="Lo más reciente" />
+        <CatalogueCards articles={articles} className={styles.homeCatalogue} />
+      </section>
     </Layout>
   );
 }
