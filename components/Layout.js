@@ -18,7 +18,11 @@ export default function Layout({
       </Head>
 
       {showNavbar && <Navbar />}
-      <Container maxWidth="lg" disableGutters>
+      <Container
+        maxWidth="lg"
+        disableGutters
+        sx={{ minHeight: "calc(100vh - 149px)" }}
+      >
         {children}
       </Container>
       {showFooter && <Footer />}

@@ -13,6 +13,8 @@ import Subtitle from "../Subtitle";
 
 import styles from "../../components/LoginForm/LoginForm.module.scss";
 import signup from "../../services/users/signup";
+import login from "../../services/users/login";
+import getUser from "../../services/users/getUser";
 
 export default function Signup() {
   const [values, setValues] = useState({});
@@ -31,8 +33,14 @@ export default function Signup() {
       console.log("response: ", response);
 
       if (response.success) {
-        localStorage.setItem("user", response.user);
-        router.push("/");
+        const { token } = await login({
+          email: values.email,
+          password: values.password,
+        });
+        const user = await getUser(token);
+
+        localStorage.setItem("user", JSON.stringify({ token, user }));
+        router.replace("/dashboard");
       }
     } catch (error) {
       setError("Error. Verifique los datos ingresados");
@@ -43,7 +51,6 @@ export default function Signup() {
     <Layout showNavbar={false} showFooter={false}>
       <Grid
         container
-        direction={{ xs: "column", sm: "row", md: "row", lg: "row" }}
         justifyContent="center"
         alignItems="center"
         className={styles.login}
@@ -64,22 +71,14 @@ export default function Signup() {
           />
           <Image
             src="/illustrations/ilu-05.svg"
-            width="auto"
-            height="320px"
+            width={100}
+            height={320}
             alt="compartox2-landingpage"
             layout="raw"
             className={`${styles.loginImage} ${styles.signupImage}`}
           />
         </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={6}
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-          className={styles.loginInputs}
-        >
+        <Grid item xs={12} sm={6} className={styles.loginInputs}>
           <Title title="Crea tu cuenta" />
           <TextField
             name="name"
@@ -167,14 +166,7 @@ export default function Signup() {
               {error}
             </Alert>
           )}
-          <Grid
-            item
-            xs={12}
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            className={styles.loginSignUp}
-          >
+          <Grid item xs={12} className={styles.loginSignUp}>
             <Subtitle subtitle="¿Ya tienes cuenta?" />
             <Note note="Inicia Sesión" href="/login" />
           </Grid>

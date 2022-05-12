@@ -15,9 +15,8 @@ import Title from "../Title";
 
 import styles from "./MenuMobile.module.scss";
 
-export default function MenuMobile() {
+export default function MenuMobile({ user }) {
   const [expanded, setExpanded] = useState(false);
-  const [user, setUser] = useState({});
 
   const toggleDrawer = (open) => (event) => {
     if (
@@ -29,31 +28,27 @@ export default function MenuMobile() {
     setExpanded(open);
   };
 
-  useEffect(() => {
-    const userLocalStorage = localStorage.getItem("user");
-    const userData = JSON.parse(userLocalStorage);
-    setUser(userData?.user);
-  }, []);
-
   const list = () => (
     <Box
-      sx={{ width: 250, paddingTop: "2rem" }}
+      sx={{ width: 300, paddingTop: "2rem" }}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
       <List>
         <ListItem>
-          <Title title={`Hola, ${user?.name} !`} />
+          <Title title={user ? `Hola, ${user?.name} !` : ``} />
         </ListItem>
         <Link href={user ? `/dashboard` : `/login`} passHref>
           <ListItem button>
             <ListItemText primary={user ? `Mi perfil` : `Iniciar Sesión`} />
           </ListItem>
         </Link>
-        <ListItem button>
-          <ListItemText primary={user ? `Favoritos` : ``} />
-        </ListItem>
+        {user && (
+          <ListItem button>
+            <ListItemText primary="Favoritos" />
+          </ListItem>
+        )}
         <Link
           passHref
           href={user ? `/` : `/signup`}

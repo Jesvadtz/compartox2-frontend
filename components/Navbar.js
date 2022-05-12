@@ -1,6 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -14,6 +15,7 @@ import Container from "@mui/material/Container";
 import ButtonText from "./ButtonText";
 import MenuMobile from "../components/MenuMobile";
 import Image from "next/image";
+import searchArticles from "../services/articles/searchArticles";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -35,10 +37,10 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: "100%",
   position: "absolute",
-  pointerEvents: "none",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  zIndex: 2,
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -55,49 +57,89 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+// eslint-disable-next-line
+const LogoImage = React.forwardRef(({ onClick, href }, ref) => {
+  return (
+    <a href={href} onClick={onClick} ref={ref}>
+      <Image
+        src="/compartox2.svg"
+        width="100px"
+        height="30px"
+        alt="compartox2-logo"
+      />
+    </a>
+  );
+});
+
 export default function Navbar() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const userLocalStorage = localStorage.getItem("user");
-    const userData = JSON.parse(userLocalStorage);
-    setUser(userData?.user);
+    console.log("userLocalStorage", userLocalStorage);
+    if (userLocalStorage) {
+      const userData = JSON.parse(userLocalStorage);
+      setUser(userData?.user);
+    }
   }, []);
+
+  const router = useRouter();
+
+  const handleChange = (event) => {
+    setSearch(event.target.value);
+    console.log("search", search);
+  };
+
+  const handleSignOut = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+  };
+
+  const handleSubmit = async () => {
+    router.push(`/catalogue?q=${search}`);
+  };
 
   return (
     <Box xs={12}>
       <AppBar position="static" color="white">
         <Container maxWidth="lg">
           <Toolbar disableGutters>
-            <MenuMobile />
+            <MenuMobile user={user} />
             <Link href="/" passHref>
-              <Image
-                src="/compartox2.svg"
-                width="100px"
-                height="30px"
-                alt="compartox2-logo"
-              />
+              <LogoImage />
             </Link>
             <Search>
-              <SearchIconWrapper>
+              <SearchIconWrapper onClick={handleSubmit}>
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder="Buscar artículos..."
                 inputProps={{ "aria-label": "search" }}
+                onChange={handleChange}
+                value={search}
+                name="search"
               />
             </Search>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "block" } }}>
-              <Link href={user ? `/` : `/signup`} passHref>
-                <ButtonText
-                  variant="text"
-                  color="gray"
-                  onClick={() => localStorage.removeItem("user")}
-                >
-                  {user ? `Cerrar Sesión` : `Crear cuenta`}
-                </ButtonText>
-              </Link>
+              {user ? (
+                <Link href="/" passHref>
+                  <ButtonText
+                    variant="text"
+                    color="gray"
+                    onClick={handleSignOut}
+                  >
+                    Cerrar Sesión
+                  </ButtonText>
+                </Link>
+              ) : (
+                <Link href="/signup" passHref>
+                  <ButtonText variant="text" color="gray">
+                    Crear cuenta
+                  </ButtonText>
+                </Link>
+              )}
               <Link href={user ? `/dashboard` : `/login`} passHref>
                 <ButtonText variant="text">
                   {user ? `Mi perfil` : `Iniciar Sesión`}
