@@ -55,7 +55,7 @@ export default function ArticleForm() {
     files.forEach((file) => {
       form.append("image", file);
     });
-    saveArticle(form).then(() => router.push("/"));
+    saveArticle(form).then(() => router.push("/catalogue"));
   };
 
   return (
@@ -165,7 +165,6 @@ export default function ArticleForm() {
                 variant="contained"
                 className={styles.articleButton}
                 onClick={onSubmit}
-                href="/catalogue"
               >
                 Publicar artículo
               </ButtonPrimary>

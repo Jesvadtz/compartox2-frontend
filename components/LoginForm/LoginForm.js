@@ -65,15 +65,7 @@ export default function Login() {
             className={styles.loginImage}
           />
         </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={6}
-          className={styles.loginInputs}
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Grid item xs={12} sm={6} className={styles.loginInputs}>
           <Title title="Bienvenido" />
           <TextField
             name="email"
@@ -104,14 +96,7 @@ export default function Login() {
               {error}
             </Alert>
           )}
-          <Grid
-            item
-            xs={12}
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            className={styles.loginSignUp}
-          >
+          <Grid item xs={12} className={styles.loginSignUp}>
             <Subtitle subtitle="¿Aún no tienes cuenta?" />
             <Note note="Crear una cuenta" href="/signup" />
           </Grid>
