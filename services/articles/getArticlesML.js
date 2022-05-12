@@ -1,10 +1,10 @@
-const HOST = process.env.API_MERCADO_LIBRE || "";
+const HOST = process.env.NEXT_PUBLIC_API_MERCADO_LIBRE || "";
 
-const getArticles = async () => {
+const getArticlesML = async (search) => {
   try {
-    const result = await fetch(
-      `${HOST}limit=10&category=MLM1499&q=${searching}`
-    );
+    const result = await fetch(`${HOST}limit=8&category=MLM1499&q=${search}`, {
+      mode: "cors",
+    });
     const data = await result.json();
     return data;
   } catch (error) {
@@ -12,4 +12,4 @@ const getArticles = async () => {
   }
 };
 
-export default getArticles;
+export default getArticlesML;
