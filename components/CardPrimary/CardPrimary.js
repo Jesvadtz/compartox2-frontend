@@ -25,7 +25,10 @@ export default function CardPrimary({
   content,
   userLocation,
   id,
+  link,
 }) {
+  const cardLink = link ? link : `/article/${id}`;
+
   return (
     <CardStyled>
       <CardMedia className={styles.cardImage}>
@@ -57,7 +60,7 @@ export default function CardPrimary({
             className={styles.cardTitle}
             sx={{ fontWeight: "bold" }}
           >
-            <Link href={`/article/${id}`}>{title}</Link>
+            <Link href={cardLink}>{title}</Link>
           </Typography>
           <Typography
             variant="body2"
