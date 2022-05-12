@@ -20,6 +20,7 @@ export default function CatalogueCards({ articles }) {
             price={price}
             content={description}
             userLocation={location}
+            link={link}
           />
         );
       })}

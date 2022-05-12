@@ -72,13 +72,16 @@ const LogoImage = React.forwardRef(({ onClick, href }, ref) => {
 });
 
 export default function Navbar() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     const userLocalStorage = localStorage.getItem("user");
-    const userData = JSON.parse(userLocalStorage);
-    setUser(userData?.user);
+    console.log("userLocalStorage", userLocalStorage);
+    if (userLocalStorage) {
+      const userData = JSON.parse(userLocalStorage);
+      setUser(userData?.user);
+    }
   }, []);
 
   const router = useRouter();
@@ -86,6 +89,11 @@ export default function Navbar() {
   const handleChange = (event) => {
     setSearch(event.target.value);
     console.log("search", search);
+  };
+
+  const handleSignOut = () => {
+    localStorage.removeItem("user");
+    setUser(null);
   };
 
   const handleSubmit = async () => {
@@ -97,7 +105,7 @@ export default function Navbar() {
       <AppBar position="static" color="white">
         <Container maxWidth="lg">
           <Toolbar disableGutters>
-            <MenuMobile />
+            <MenuMobile user={user} />
             <Link href="/" passHref>
               <LogoImage />
             </Link>
@@ -115,15 +123,23 @@ export default function Navbar() {
             </Search>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "block" } }}>
-              <Link href={user ? `/` : `/signup`} passHref>
-                <ButtonText
-                  variant="text"
-                  color="gray"
-                  onClick={() => localStorage.removeItem("user")}
-                >
-                  {user ? `Cerrar Sesión` : `Crear cuenta`}
-                </ButtonText>
-              </Link>
+              {user ? (
+                <Link href="/" passHref>
+                  <ButtonText
+                    variant="text"
+                    color="gray"
+                    onClick={handleSignOut}
+                  >
+                    Cerrar Sesión
+                  </ButtonText>
+                </Link>
+              ) : (
+                <Link href="/signup" passHref>
+                  <ButtonText variant="text" color="gray">
+                    Crear cuenta
+                  </ButtonText>
+                </Link>
+              )}
               <Link href={user ? `/dashboard` : `/login`} passHref>
                 <ButtonText variant="text">
                   {user ? `Mi perfil` : `Iniciar Sesión`}

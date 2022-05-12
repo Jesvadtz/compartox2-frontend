@@ -33,6 +33,9 @@ export default function DetailCard({ article }) {
   const user = article?.user;
   const userLocation = `${user?.state}, ${user?.city}`;
   const userName = `${user?.name} ${user?.lastname}`;
+  const userPhone = user?.number;
+  const userEmail = user?.email;
+  const publishedDate = new Date(createdAt).toLocaleDateString();
 
   const photo = images[0];
   console.log("article", article);
@@ -131,7 +134,7 @@ export default function DetailCard({ article }) {
                   Publicado el
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                  {createdAt}
+                  {publishedDate}
                 </Typography>
               </div>
             </div>
@@ -141,9 +144,10 @@ export default function DetailCard({ article }) {
       <ModalContact
         open={open}
         onClose={handleClose}
-        onClick={handleOpen}
         name={name}
         userName={userName}
+        userPhone={userPhone}
+        userEmail={userEmail}
       />
     </>
   );

@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     domains: ["compartox2.s3.us-east-2.amazonaws.com", "http2.mlstatic.com"],
   },
+  experimental: { images: { layoutRaw: true } },
 };
 
 module.exports = nextConfig;

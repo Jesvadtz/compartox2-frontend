@@ -15,9 +15,8 @@ import Title from "../Title";
 
 import styles from "./MenuMobile.module.scss";
 
-export default function MenuMobile() {
+export default function MenuMobile({ user }) {
   const [expanded, setExpanded] = useState(false);
-  const [user, setUser] = useState({});
 
   const toggleDrawer = (open) => (event) => {
     if (
@@ -28,12 +27,6 @@ export default function MenuMobile() {
     }
     setExpanded(open);
   };
-
-  useEffect(() => {
-    const userLocalStorage = localStorage.getItem("user");
-    const userData = JSON.parse(userLocalStorage);
-    setUser(userData?.user);
-  }, []);
 
   const list = () => (
     <Box

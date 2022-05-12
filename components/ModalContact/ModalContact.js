@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
 import ButtonPrimary from "../ButtonPrimary";
+import Link from "next/link";
 
 const style = {
   position: "absolute",
@@ -21,9 +22,10 @@ const style = {
 export default function ModalContact({
   open,
   onClose,
-  onClick,
   name,
   userName,
+  userPhone,
+  userEmail,
 }) {
   return (
     <div>
@@ -53,11 +55,25 @@ export default function ModalContact({
             {name}
           </Typography>
           <Typography variant="body2">{userName}</Typography>
-          <ButtonPrimary variant="contained">
-            Contactar por WhatsApp
-          </ButtonPrimary>
-          <ButtonPrimary variant="outlined">Contactar por Email</ButtonPrimary>
-          <ButtonPrimary variant="text" onClick={onClick}>
+          <Link
+            href={`https://wa.me/+52${userPhone}/?text=${encodeURI(
+              "Hola. Estoy interesado en el artículo: "
+            )}${encodeURI(name)}${encodeURI(
+              " ¿Aún está disponible? Saludos."
+            )}`}
+            target="_blank"
+            passHref
+          >
+            <ButtonPrimary variant="contained" target="_blank">
+              Contactar por WhatsApp
+            </ButtonPrimary>
+          </Link>
+          <Link href={`mailto:${userEmail}`} passHref>
+            <ButtonPrimary variant="outlined">
+              Contactar por Email
+            </ButtonPrimary>
+          </Link>
+          <ButtonPrimary variant="text" onClick={onClose}>
             Cancelar
           </ButtonPrimary>
         </Box>

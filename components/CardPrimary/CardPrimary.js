@@ -60,7 +60,13 @@ export default function CardPrimary({
             className={styles.cardTitle}
             sx={{ fontWeight: "bold" }}
           >
-            <Link href={cardLink}>{title}</Link>
+            {link ? (
+              <a href={cardLink} target="_blank">
+                {title}
+              </a>
+            ) : (
+              <Link href={cardLink}>{title}</Link>
+            )}
           </Typography>
           <Typography
             variant="body2"
