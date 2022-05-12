@@ -61,7 +61,7 @@ export default function CardPrimary({
             sx={{ fontWeight: "bold" }}
           >
             {link ? (
-              <a href={cardLink} target="_blank">
+              <a href={cardLink} target="_blank" rel="noreferrer">
                 {title}
               </a>
             ) : (
