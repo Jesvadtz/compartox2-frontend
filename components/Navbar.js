@@ -57,6 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+// eslint-disable-next-line
 const LogoImage = React.forwardRef(({ onClick, href }, ref) => {
   return (
     <a href={href} onClick={onClick} ref={ref}>
