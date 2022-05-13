@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 import { Alert, Grid } from "@mui/material";
@@ -16,17 +16,21 @@ import ImageUploader from "../ImageUploader";
 import saveArticle from "../../services/articles/saveArticle";
 
 import styles from "./ArticleForm.module.scss";
+import updateArticle from "../../services/articles/updateArticle";
 
-const formDefault = {
-  name: "",
-  type: "Material",
-  description: "",
-  price: "",
-  author: "",
-  editorial: "",
-};
+export default function ArticleForm({ article }) {
+  const formDefault = {
+    name: article?.name || "",
+    type: article?.type || "Material",
+    description: article?.description || "",
+    price: article?.price || "",
+    author: article?.author || "",
+    editorial: article?.editorial || "",
+  };
 
-export default function ArticleForm() {
+  console.log("article---->", article);
+  console.log("----->> formDefault", formDefault);
+
   const [values, setValues] = useState(formDefault);
   const [files, setFiles] = useState([]);
 
@@ -41,6 +45,7 @@ export default function ArticleForm() {
   const router = useRouter();
 
   const isBook = values.type === "Libro";
+  const articleId = article?._id;
 
   const onSubmit = () => {
     const form = new FormData();
@@ -55,7 +60,11 @@ export default function ArticleForm() {
     files.forEach((file) => {
       form.append("image", file);
     });
-    saveArticle(form).then(() => router.push("/catalogue"));
+    if (articleId) {
+      updateArticle(form, articleId).then(() => router.push("/catalogue"));
+    } else {
+      saveArticle(form).then(() => router.push("/catalogue"));
+    }
   };
 
   return (
@@ -159,7 +168,7 @@ export default function ArticleForm() {
             direction="column"
             className={`${styles.articleForm} ${styles.articleImages}`}
           >
-            <ImageUploader files={files} setFiles={setFiles} />
+            {!articleId && <ImageUploader files={files} setFiles={setFiles} />}
             <div className={styles.articlePublish}>
               <ButtonPrimary
                 variant="contained"

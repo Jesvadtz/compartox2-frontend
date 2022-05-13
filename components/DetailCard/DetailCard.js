@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 
 import CardContent from "@mui/material/CardContent";
@@ -11,12 +12,15 @@ import { styled } from "@mui/material/styles";
 import { Container, Divider } from "@mui/material";
 
 import ButtonPrimary from "../ButtonPrimary";
-import styles from "../CardPrimary/CardPrimary.module.scss";
-import stylesDetail from "./DetailCard.module.scss";
 import ModalContact from "../ModalContact";
 import ModalInvitee from "../ModalInvitee";
-import getUser from "../../services/users/getUser";
 import Note from "../Note";
+
+import styles from "../CardPrimary/CardPrimary.module.scss";
+import stylesDetail from "./DetailCard.module.scss";
+
+import getUser from "../../services/users/getUser";
+import deleteArticle from "../../services/articles/deleteArticle";
 
 const CardStyled = styled(CardMedia)(({ theme }) => ({
   width: 324,
@@ -62,10 +66,21 @@ export default function DetailCard({ article }) {
   const seller = userLogin?._id === user?._id;
 
   console.log("article", article);
-
+  //Modal
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const router = useRouter();
+  console.log(
+    "--------------------article?._id------------------",
+    article?._id
+  );
+  const onDelete = () => {
+    deleteArticle(article?._id).then(() => {
+      router.replace("/catalogue");
+    });
+  };
 
   return (
     <>
@@ -134,13 +149,17 @@ export default function DetailCard({ article }) {
                     <ButtonPrimary
                       variant="contained"
                       color="secondary"
-                      onClick={handleOpen}
+                      href={`/article/${article?._id}/edit`}
                     >
                       Editar
                     </ButtonPrimary>
-                    <div className={stylesDetail.detailDelete}>
-                      <Note href="/" note="Borrar artículo" />
-                    </div>
+                    <ButtonPrimary
+                      variant="outlined"
+                      color="primary"
+                      onClick={onDelete}
+                    >
+                      Borrar artículo
+                    </ButtonPrimary>
                   </div>
                 ) : (
                   <ButtonPrimary variant="contained" onClick={handleOpen}>
