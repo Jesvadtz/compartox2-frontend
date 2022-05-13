@@ -77,7 +77,6 @@ export default function Navbar() {
 
   useEffect(() => {
     const userLocalStorage = localStorage.getItem("user");
-    console.log("userLocalStorage", userLocalStorage);
     if (userLocalStorage) {
       const userData = JSON.parse(userLocalStorage);
       setUser(userData?.user);
@@ -88,7 +87,6 @@ export default function Navbar() {
 
   const handleChange = (event) => {
     setSearch(event.target.value);
-    console.log("search", search);
   };
 
   const handleSignOut = () => {
@@ -111,7 +109,7 @@ export default function Navbar() {
             </Link>
             <Search>
               <SearchIconWrapper onClick={handleSubmit}>
-                <SearchIcon />
+                <SearchIcon sx={{ width: "24px", height: "24px" }} />
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder="Buscar artículos..."

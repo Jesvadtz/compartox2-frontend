@@ -24,7 +24,6 @@ export default function ListItems({
         <div>
           <div className={styles.listItem}>
             <ItemDashboard text="Artículos en venta" count={articleCount} />
-            {articleCount > 0 && <Note note="Ver artículos" href="/" />}
           </div>
           <Divider variant="inset" component="li" sx={{ marginLeft: 0 }} />
           {/* <div className={styles.listItem}>
@@ -41,7 +40,6 @@ export default function ListItems({
           <Divider variant="inset" component="li" sx={{ marginLeft: 0 }} /> */}
           <div className={styles.listItem}>
             <ItemDashboard text="Favoritos" count={favoritesCount} />
-            {favoritesCount > 0 && <Note note="Ver favoritos" href="/" />}
           </div>
           <Divider variant="inset" component="li" sx={{ marginLeft: 0 }} />
         </div>

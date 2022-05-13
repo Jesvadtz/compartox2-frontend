@@ -17,7 +17,6 @@ export default function CataloguePage() {
   const [articlesML, setArticlesML] = useState([]);
 
   const router = useRouter();
-  console.log("router", router);
 
   useEffect(() => {
     if (router.isReady) {
@@ -29,18 +28,16 @@ export default function CataloguePage() {
           );
           getArticlesML(search).then((data) => {
             setArticlesML(data.results);
-            console.log("articlesML", data.results);
           });
         } else {
           const dataArticles = await getArticles();
           setArticles(dataArticles.data.articles);
-          console.log("dataArticles", dataArticles.data.articles);
         }
       };
       fetchArticles();
     }
   }, [router.isReady, router.query?.q]);
-  console.log("articles.data.articles", articles);
+
   return (
     <Layout>
       <div className={styles.catalogueDataBase}>

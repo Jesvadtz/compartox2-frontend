@@ -44,20 +44,13 @@ export default function MenuMobile({ user }) {
             <ListItemText primary={user ? `Mi perfil` : `Iniciar Sesión`} />
           </ListItem>
         </Link>
-        {user && (
-          <ListItem button>
-            <ListItemText primary="Favoritos" />
-          </ListItem>
+        {!user && (
+          <Link passHref href={"/signup"}>
+            <ListItem button>
+              <ListItemText secondary={"Crear cuenta"} />
+            </ListItem>
+          </Link>
         )}
-        <Link
-          passHref
-          href={user ? `/` : `/signup`}
-          onClick={() => localStorage.removeItem("user")}
-        >
-          <ListItem button>
-            <ListItemText secondary={user ? `Cerrar Sesión` : `Crear cuenta`} />
-          </ListItem>
-        </Link>
       </List>
       <Divider />
       <List>

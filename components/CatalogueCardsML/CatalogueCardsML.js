@@ -4,7 +4,6 @@ import Subtitle from "../Subtitle";
 import styles from "./CatalogueCardsML.module.scss";
 
 export default function CatalogueCardsML({ articles }) {
-  console.log("articles", articles);
   return (
     <section className={styles.catalogueLayout}>
       <div>
