@@ -13,7 +13,6 @@ const updateArticle = async (formData, articleId) => {
     });
 
     const data = await result.json();
-    console.log("dataArticle", data);
     return data;
   } catch (error) {
     console.log("ERROR!!!!", error);

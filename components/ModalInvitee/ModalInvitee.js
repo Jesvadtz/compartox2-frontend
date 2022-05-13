@@ -35,18 +35,20 @@ export default function ModalInvitee({ open, onClose }) {
             component="h2"
             sx={{ fontWeight: "bold" }}
           >
-            ¡Ya casi es tuyo!
+            ¡Lo sentimos!
           </Typography>
           <Typography
             id="modal-modal-description"
             variant="body1"
             sx={{ mt: 2, mb: 2 }}
           >
-            Para poder contactar con el vendedor necesitas tener una cuenta en
-            CompartoX2.
+            Para poder continuar necesitas tener una cuenta en CompartoX2.
           </Typography>
           <Link href="/signup" passHref>
             <ButtonPrimary variant="contained">Crear una cuenta</ButtonPrimary>
+          </Link>
+          <Link href="/login" passHref>
+            <ButtonPrimary variant="outlined">Iniciar Sesión</ButtonPrimary>
           </Link>
           <ButtonPrimary variant="text" onClick={onClose}>
             Cancelar

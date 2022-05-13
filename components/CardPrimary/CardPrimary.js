@@ -4,8 +4,6 @@ import Link from "next/link";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import { styled } from "@mui/material/styles";
 
 import styles from "./CardPrimary.module.scss";
@@ -49,10 +47,6 @@ export default function CardPrimary({
           className={styles.cardPrice}
         >
           $ {price} MXN
-          <IconButton aria-label="add to favorites">
-            <FavoriteBorderOutlinedIcon color="secondary" />
-            {/* <FavoriteOutlinedIcon color="secondary" /> */}
-          </IconButton>
         </Typography>
         <div>
           <Typography

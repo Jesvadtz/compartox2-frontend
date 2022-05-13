@@ -28,9 +28,6 @@ export default function ArticleForm({ article }) {
     editorial: article?.editorial || "",
   };
 
-  console.log("article---->", article);
-  console.log("----->> formDefault", formDefault);
-
   const [values, setValues] = useState(formDefault);
   const [files, setFiles] = useState([]);
 
