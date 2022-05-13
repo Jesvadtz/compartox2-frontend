@@ -64,7 +64,7 @@ const LogoImage = React.forwardRef(({ onClick, href }, ref) => {
       <Image
         src="/compartox2.svg"
         width="100px"
-        height="30px"
+        height="19px"
         alt="compartox2-logo"
       />
     </a>

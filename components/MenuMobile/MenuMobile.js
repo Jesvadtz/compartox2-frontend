@@ -66,11 +66,6 @@ export default function MenuMobile({ user }) {
             <ListItemText primary={"Catálogo de artículos"} />
           </ListItem>
         </Link>
-        <Link href="/" passHref>
-          <ListItem button>
-            <ListItemText primary={"Mercado Libre"} />
-          </ListItem>
-        </Link>
       </List>
     </Box>
   );

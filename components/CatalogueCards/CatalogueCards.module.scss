@@ -1,12 +1,13 @@
 .catalogueLayout {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   margin: 2rem 1rem;
   gap: 1rem;
 }
 @media (min-width: 900px) {
   .catalogueLayout {
-    gap: 3rem;
+    gap: 2rem;
+    padding: 0 2rem;
   }
 }

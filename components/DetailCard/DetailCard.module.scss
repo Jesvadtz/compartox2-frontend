@@ -34,6 +34,9 @@
   border-radius: 0.5rem;
   box-shadow: 3px 3px 6px #3b455935;
 }
+.detailDelete {
+  margin-top: 1.5rem;
+}
 
 @media (min-width: 900px) {
   .detailDataCard {
@@ -75,6 +78,11 @@
   .detailContainer {
     margin-top: 4rem;
     height: calc(100vh - 195px);
+  }
+  .detailSeller {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 }
 @media (min-width: 1200px) {
