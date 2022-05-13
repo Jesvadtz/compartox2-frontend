@@ -48,7 +48,9 @@ export default function Home() {
         Ver artículos
       </LandingSectionBg>
       <section className={styles.homeTitle}>
-        <Title title="Lo más reciente" />
+        <div className={styles.homeTitleLanding}>
+          <Title title="Lo más reciente" />
+        </div>
         <CatalogueCards articles={articles} className={styles.homeCatalogue} />
       </section>
     </Layout>

@@ -1,0 +1,19 @@
+.catalogueLayout {
+  margin: 2rem 1rem;
+  background-color: #f7f7f7;
+  border-radius: 0.5rem;
+  padding: 2rem 2rem;
+}
+.catalogueCards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+@media (min-width: 900px) {
+  .catalogueLayout {
+    gap: 3rem;
+    padding: 2rem 4rem;
+  }
+}

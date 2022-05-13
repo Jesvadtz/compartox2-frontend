@@ -2,7 +2,7 @@ const HOST = process.env.NEXT_PUBLIC_API_MERCADO_LIBRE || "";
 
 const getArticlesML = async (search) => {
   try {
-    const result = await fetch(`${HOST}limit=8&category=MLM1499&q=${search}`, {
+    const result = await fetch(`${HOST}limit=6&category=MLM1499&q=${search}`, {
       mode: "cors",
     });
     const data = await result.json();
