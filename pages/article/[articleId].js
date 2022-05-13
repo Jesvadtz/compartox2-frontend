@@ -15,7 +15,6 @@ export default function ArticlePage() {
       const dataArticle = await getByIdArticle(articleId);
 
       setArticle(dataArticle.data?.article);
-      console.log("dataArticle", dataArticle.data?.article);
     };
     if (articleId) fetchArticle();
   }, [articleId]);

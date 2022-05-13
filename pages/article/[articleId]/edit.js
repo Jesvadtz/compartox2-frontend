@@ -8,12 +8,9 @@ export default function EditArticle() {
   const router = useRouter();
   const articleId = router.query?.articleId;
   const [article, setArticle] = useState(null);
-  console.log("articleId", articleId);
-  console.log("article", article);
 
   useEffect(() => {
     if (articleId) {
-      console.log("Fetch");
       const fetchArticle = async () => {
         const dataArticle = await getByIdArticle(articleId);
         setArticle(dataArticle.data.article);

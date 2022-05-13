@@ -16,7 +16,6 @@ export default function Home() {
     const fetchArticles = async () => {
       const dataArticles = await getArticles();
       setArticles(dataArticles.data.articles);
-      console.log("dataArticles", dataArticles.data.articles);
     };
     fetchArticles();
   }, []);
@@ -45,7 +44,7 @@ export default function Home() {
         bgWhite
         href="/"
       >
-        Ver artículos
+        Buscar artículos
       </LandingSectionBg>
       <section className={styles.homeTitle}>
         <div className={styles.homeTitleLanding}>

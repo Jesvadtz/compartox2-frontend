@@ -8,6 +8,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import { styled } from "@mui/material/styles";
 import { Container, Divider } from "@mui/material";
 
@@ -21,6 +22,8 @@ import stylesDetail from "./DetailCard.module.scss";
 
 import getUser from "../../services/users/getUser";
 import deleteArticle from "../../services/articles/deleteArticle";
+import addFavorite from "../../services/favorites/addFavorite";
+import deleteFavorite from "../../services/favorites/deleteFavorite";
 
 const CardStyled = styled(CardMedia)(({ theme }) => ({
   width: 324,
@@ -36,19 +39,9 @@ const CardStyled = styled(CardMedia)(({ theme }) => ({
 }));
 
 export default function DetailCard({ article }) {
-  const [userLogin, setUserLogin] = useState(null);
-
-  useEffect(() => {
-    const userLocalStorage = localStorage.getItem("user");
-    const userActual = async () => {
-      const userJs = JSON.parse(userLocalStorage);
-      const token = userJs?.token;
-      const user = await getUser(token);
-
-      setUserLogin(user);
-    };
-    userActual();
-  }, []);
+  const [userLogin, setUserLogin] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
 
   const { price, name, description, createdAt, author, editorial, images } =
     article;
@@ -60,26 +53,54 @@ export default function DetailCard({ article }) {
   const publishedDate = new Date(createdAt).toLocaleDateString();
 
   const photo = images[0];
-  console.log("article", article);
 
   const isBook = article.type === "Libro";
-  const seller = userLogin?._id === user?._id;
+  const seller = userLogin?.user?._id === user?._id;
+  const favorite = userLogin?.user?.favorites?.includes?.(article?._id);
 
-  console.log("article", article);
   //Modal
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const router = useRouter();
-  console.log(
-    "--------------------article?._id------------------",
-    article?._id
-  );
+
   const onDelete = () => {
     deleteArticle(article?._id).then(() => {
       router.replace("/catalogue");
     });
+  };
+
+  const onFavorite = async () => {
+    if (userLogin?.token) {
+      if (favorite) {
+        const newFavorites = await deleteFavorite(
+          article?._id,
+          userLogin?.user?._id
+        );
+        const updateUser = {
+          ...userLogin.user,
+          favorites: newFavorites.data.favorites,
+        };
+        const newLocalStorage = { token: userLogin.token, user: updateUser };
+        localStorage.setItem("user", JSON.stringify(newLocalStorage));
+        setUserLogin(newLocalStorage);
+      } else {
+        const newFavorites = await addFavorite(
+          article?._id,
+          userLogin?.user?._id
+        );
+        const updateUser = {
+          ...userLogin.user,
+          favorites: newFavorites.data.favorites,
+        };
+        const newLocalStorage = { token: userLogin.token, user: updateUser };
+        localStorage.setItem("user", JSON.stringify(newLocalStorage));
+        setUserLogin(newLocalStorage);
+      }
+    } else {
+      handleOpen();
+    }
   };
 
   return (
@@ -106,10 +127,18 @@ export default function DetailCard({ article }) {
               >
                 $ {price} MXN
                 {!seller && (
-                  <IconButton aria-label="add to favorites">
-                    <FavoriteBorderOutlinedIcon color="secondary" />
-                    {/* <FavoriteOutlinedIcon color="secondary" /> */}
-                  </IconButton>
+                  <>
+                    <IconButton
+                      aria-label="add to favorites"
+                      onClick={onFavorite}
+                    >
+                      {favorite ? (
+                        <FavoriteOutlinedIcon color="secondary" />
+                      ) : (
+                        <FavoriteBorderOutlinedIcon color="secondary" />
+                      )}
+                    </IconButton>
+                  </>
                 )}
               </Typography>
               <div>

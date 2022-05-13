@@ -28,9 +28,7 @@ export default function Signup() {
   };
   const handleSubmit = async () => {
     try {
-      // event.preventDefault();
       const response = await signup(values);
-      console.log("response: ", response);
 
       if (response.success) {
         const { token } = await login({

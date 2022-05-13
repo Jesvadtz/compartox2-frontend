@@ -7,9 +7,7 @@ import styles from "../ArticleForm/ArticleForm.module.scss";
 const fileTypes = ["JPG", "JPEG", "PNG"];
 
 const ImageUploader = ({ files, setFiles }) => {
-  console.log("files: ", files);
   const handleAdd = (newFiles) => {
-    console.log("newFiles", newFiles);
     setFiles([...files, ...newFiles]);
   };
   const handleRemove = (file) => {

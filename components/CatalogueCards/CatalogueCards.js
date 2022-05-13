@@ -3,7 +3,6 @@ import CardPrimary from "../CardPrimary";
 import styles from "./CatalogueCards.module.scss";
 
 export default function CatalogueCards({ articles }) {
-  console.log("articles", articles);
   return (
     <section className={styles.catalogueLayout}>
       {articles.map((article) => {
