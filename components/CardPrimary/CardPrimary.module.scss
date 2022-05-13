@@ -4,6 +4,7 @@
   align-items: center;
   font-size: 1rem;
   font-weight: 600;
+  margin-bottom: 0;
 }
 .cardImage img {
   border-radius: 0.5rem;
@@ -11,11 +12,12 @@
 }
 .cardImage {
   border-radius: 0.5rem;
-  box-shadow: 3px 3px 6px #3b455935;
+  box-shadow: 3px 3px 8px #3b455935;
 }
 .cardTitle {
   font-size: 1rem;
   line-height: 1.2rem;
+  font-weight: 500;
   display: -webkit-box;
   overflow: hidden;
   -webkit-line-clamp: 2;
@@ -33,9 +35,10 @@
   font-size: 0.8rem;
   color: #55555a;
   font-weight: 400;
+  margin-top: 0.2rem;
 }
 .cardLocation {
-  font-size: 0.5rem;
+  font-size: 0.6rem;
 }
 .cardContainer {
   padding: 0.5rem 0;
@@ -45,19 +48,18 @@
     font-size: 1.3rem;
   }
   .cardTitle {
-    font-size: 1.4rem;
-    line-height: 1.7rem;
+    font-size: 1.1rem;
+    line-height: 1.5rem;
     overflow: hidden;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
   }
   .cardContent {
-    font-size: 1rem;
+    font-size: 0.9rem;
     max-width: 252px;
-    margin: 0.3rem 0;
   }
   .cardLocation {
     margin-top: 0.5rem;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 }

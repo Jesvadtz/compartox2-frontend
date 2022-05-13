@@ -1,4 +1,7 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
@@ -8,11 +11,12 @@ import { styled } from "@mui/material/styles";
 import { Container, Divider } from "@mui/material";
 
 import ButtonPrimary from "../ButtonPrimary";
-import Image from "next/image";
-
 import styles from "../CardPrimary/CardPrimary.module.scss";
 import stylesDetail from "./DetailCard.module.scss";
 import ModalContact from "../ModalContact";
+import ModalInvitee from "../ModalInvitee";
+import getUser from "../../services/users/getUser";
+import Note from "../Note";
 
 const CardStyled = styled(CardMedia)(({ theme }) => ({
   width: 324,
@@ -28,6 +32,20 @@ const CardStyled = styled(CardMedia)(({ theme }) => ({
 }));
 
 export default function DetailCard({ article }) {
+  const [userLogin, setUserLogin] = useState(null);
+
+  useEffect(() => {
+    const userLocalStorage = localStorage.getItem("user");
+    const userActual = async () => {
+      const userJs = JSON.parse(userLocalStorage);
+      const token = userJs?.token;
+      const user = await getUser(token);
+
+      setUserLogin(user);
+    };
+    userActual();
+  }, []);
+
   const { price, name, description, createdAt, author, editorial, images } =
     article;
   const user = article?.user;
@@ -41,8 +59,10 @@ export default function DetailCard({ article }) {
   console.log("article", article);
 
   const isBook = article.type === "Libro";
+  const seller = userLogin?._id === user?._id;
 
   console.log("article", article);
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -55,7 +75,7 @@ export default function DetailCard({ article }) {
             <Image
               src={photo}
               width="400px"
-              height="500px"
+              height="490px"
               alt="image-article"
             />
           </CardMedia>
@@ -70,10 +90,12 @@ export default function DetailCard({ article }) {
                 className={styles.cardPrice}
               >
                 $ {price} MXN
-                <IconButton aria-label="add to favorites">
-                  <FavoriteBorderOutlinedIcon color="secondary" />
-                  {/* <FavoriteOutlinedIcon color="secondary" /> */}
-                </IconButton>
+                {!seller && (
+                  <IconButton aria-label="add to favorites">
+                    <FavoriteBorderOutlinedIcon color="secondary" />
+                    {/* <FavoriteOutlinedIcon color="secondary" /> */}
+                  </IconButton>
+                )}
               </Typography>
               <div>
                 <div>
@@ -106,9 +128,25 @@ export default function DetailCard({ article }) {
                     </Typography>
                   </div>
                 )}
-                <ButtonPrimary variant="contained" onClick={handleOpen}>
-                  Lo quiero
-                </ButtonPrimary>
+
+                {seller ? (
+                  <div className={stylesDetail.detailSeller}>
+                    <ButtonPrimary
+                      variant="contained"
+                      color="secondary"
+                      onClick={handleOpen}
+                    >
+                      Editar
+                    </ButtonPrimary>
+                    <div className={stylesDetail.detailDelete}>
+                      <Note href="/" note="Borrar artículo" />
+                    </div>
+                  </div>
+                ) : (
+                  <ButtonPrimary variant="contained" onClick={handleOpen}>
+                    Lo quiero
+                  </ButtonPrimary>
+                )}
               </div>
             </div>
             <Divider orientation="vertical" flexItem />
@@ -141,14 +179,18 @@ export default function DetailCard({ article }) {
           </CardContent>
         </CardStyled>
       </Container>
-      <ModalContact
-        open={open}
-        onClose={handleClose}
-        name={name}
-        userName={userName}
-        userPhone={userPhone}
-        userEmail={userEmail}
-      />
+      {userLogin ? (
+        <ModalContact
+          open={open}
+          onClose={handleClose}
+          name={name}
+          userName={userName}
+          userPhone={userPhone}
+          userEmail={userEmail}
+        />
+      ) : (
+        <ModalInvitee open={open} onClose={handleClose} />
+      )}
     </>
   );
 }
